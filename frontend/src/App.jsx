@@ -6,7 +6,7 @@ import FeaturesSection from './components/FeaturesSection'
 import HowItWorksSection from './components/HowItWorksSection'
 import Footer from './components/Footer'
 
-const API_BASE = '/api'
+const API_BASE = import.meta.env.VITE_API_BASE || '/api'
 
 function parseApiError(data, fallback) {
   if (!data?.detail) return fallback
