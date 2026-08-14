@@ -251,8 +251,9 @@ def _steps_to_prose(steps: list[str], sem: dict, name: str) -> str:
     if validations or raises:
         val_text = validations[0].replace("Checks `", "").replace("`", "") if validations else ""
         if raises:
+            suffix = f" ({val_text})" if val_text else ""
             sentences.append(
-                f"First it validates input{f' ({val_text})' if val_text else ''} and rejects invalid cases."
+                f"First it validates input{suffix} and rejects invalid cases."
             )
         elif validations:
             sentences.append(f"It evaluates whether `{val_text}` before continuing.")
@@ -267,8 +268,9 @@ def _steps_to_prose(steps: list[str], sem: dict, name: str) -> str:
 
     ext_calls = [c for c in sem.get("calls", []) if c.split("(")[0].split(".")[-1] != name]
     if ext_calls:
+        delegates = [f"`{c.split('(')[0]}`" for c in ext_calls[:3]]
         sentences.append(
-            f"It delegates work to {', '.join(f'`{c.split('(')[0]}`' for c in ext_calls[:3])}."
+            f"It delegates work to {', '.join(delegates)}."
         )
     elif calls:
         sentences.append("It invokes helper functions to complete the operation.")
