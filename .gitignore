@@ -1,0 +1,24 @@
+# Environment & secrets
+.env
+backend/.env
+*.env.local
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Runtime artifacts
+uploads/
+backend/uploads/
+tests/_tmp/
+backend/tests/_tmp/
